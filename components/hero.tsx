@@ -8,11 +8,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 // Если хочешь фоновое видео — положи файл в /public (например /public/hero-bg.mp4)
 // и укажи путь ниже. Если оставить пустой строкой — будет фон без видео (просто
 // текущий тёмный/светлый фон сайта), ничего не сломается.
-<<<<<<< HEAD
 const BG_VIDEO = "/portfolio/hero-bg.mp4"
-=======
-const BG_VIDEO = "/hero-bg.mp4"
->>>>>>> 8e025998730e525cd923c838c8d56502cf58841e
 
 const navLinks = [
   { href: "#about", label: "Обо мне", active: true },
