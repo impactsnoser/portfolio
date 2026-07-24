@@ -4,11 +4,12 @@ import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import { profile } from "@/lib/portfolio-data"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { LiquidBlobs } from "@/components/liquid-blobs"
 
 // Если хочешь фоновое видео — положи файл в /public (например /public/hero-bg.mp4)
 // и укажи путь ниже. Если оставить пустой строкой — будет фон без видео (просто
 // текущий тёмный/светлый фон сайта), ничего не сломается.
-const BG_VIDEO = "/portfolio/hero-bg.mp4"
+const BG_VIDEO = ""
 
 const navLinks = [
   { href: "#about", label: "Обо мне", active: true },
@@ -34,17 +35,10 @@ export function Hero() {
           playsInline
         />
       ) : (
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 bg-background"
-        >
-          <div className="aurora absolute -left-20 -top-20 h-[420px] w-[420px]" />
-        </div>
+        <LiquidBlobs />
       )}
-      {/* Затемнение поверх видео для читаемости текста */}
-      {BG_VIDEO && (
-        <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
-      )}
+      {/* Затемнение поверх фона для читаемости текста */}
+      <div className="absolute inset-0 bg-black/15" aria-hidden="true" />
 
       {/* Навбар */}
       <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-5 py-5 sm:px-8">
