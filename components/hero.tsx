@@ -35,10 +35,22 @@ export function Hero() {
           playsInline
         />
       ) : (
+<<<<<<< HEAD
         <LiquidBlobs />
       )}
       {/* Затемнение поверх фона для читаемости текста */}
       <div className="absolute inset-0 bg-black/15" aria-hidden="true" />
+=======
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden bg-background"
+        >
+          <div className="aurora-mesh" />
+        </div>
+      )}
+      {/* Затемнение поверх фона для читаемости текста */}
+      <div className="absolute inset-0 bg-black/25" aria-hidden="true" />
+>>>>>>> 0be4f02b0a063cf6cdb204de464e79e620ce3791
 
       {/* Навбар */}
       <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-5 py-5 sm:px-8">
