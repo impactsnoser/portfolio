@@ -1,39 +1,33 @@
-"use client"
+import { Section } from "@/components/section"
+import { Reveal } from "@/components/reveal"
+import { skillGroups } from "@/lib/portfolio-data"
 
-import { useEffect, useState } from "react"
-import { useTheme } from "next-themes"
-import { Moon, Sun } from "lucide-react"
-
-export function ThemeToggle() {
-  const { resolvedTheme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => setMounted(true), [])
-
-  const isDark = resolvedTheme === "dark"
-
+export function Skills() {
   return (
-    <button
-      type="button"
-      aria-label="Переключить тему"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="relative inline-flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-border bg-card text-foreground transition-all hover:border-primary hover:text-primary active:scale-90"
-    >
-      {/* До монтирования рендерим нейтральную иконку, чтобы избежать рассинхрона */}
-      <Sun
-        className={`absolute h-[18px] w-[18px] transition-all duration-500 ${
-          mounted && isDark
-            ? "rotate-0 scale-100 opacity-100"
-            : "-rotate-90 scale-0 opacity-0"
-        }`}
-      />
-      <Moon
-        className={`absolute h-[18px] w-[18px] transition-all duration-500 ${
-          !mounted || isDark
-            ? "rotate-90 scale-0 opacity-0"
-            : "rotate-0 scale-100 opacity-100"
-        }`}
-      />
-    </button>
+    <Section id="skills" eyebrow="01. Технологии" title="Навыки">
+      <div className="grid gap-6 sm:grid-cols-2">
+        {skillGroups.map((group, i) => (
+          <Reveal
+            key={group.title}
+            delay={i * 90}
+            className="rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary hover:shadow-lg hover:shadow-primary/10"
+          >
+            <h3 className="text-sm font-medium text-muted-foreground">
+              {group.title}
+            </h3>
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-md border border-border bg-secondary px-3 py-1 font-mono text-sm text-foreground transition-colors hover:border-primary hover:text-primary"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
   )
 }

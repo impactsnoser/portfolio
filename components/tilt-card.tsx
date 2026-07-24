@@ -1,26 +1,49 @@
-import { Section } from "@/components/section"
-import { Reveal } from "@/components/reveal"
-import { TiltCard } from "@/components/tilt-card"
-import { services } from "@/lib/portfolio-data"
+"use client"
 
-export function Services() {
+import { useRef, type ReactNode } from "react"
+
+/**
+ * Карточка с интерактивным 3D-наклоном, следующим за курсором.
+ * На сенсорных устройствах эффект просто не срабатывает.
+ */
+export function TiltCard({
+  children,
+  className = "",
+  max = 8,
+}: {
+  children: ReactNode
+  className?: string
+  max?: number
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  function handleMove(e: React.MouseEvent<HTMLDivElement>) {
+    const el = ref.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width
+    const y = (e.clientY - rect.top) / rect.height
+    const ry = (x - 0.5) * (max * 2)
+    const rx = (0.5 - y) * (max * 2)
+    el.style.setProperty("--ry", `${ry}deg`)
+    el.style.setProperty("--rx", `${rx}deg`)
+  }
+
+  function reset() {
+    const el = ref.current
+    if (!el) return
+    el.style.setProperty("--ry", "0deg")
+    el.style.setProperty("--rx", "0deg")
+  }
+
   return (
-    <Section id="services" eyebrow="02. Что я делаю" title="Услуги">
-      <div className="grid gap-6 sm:grid-cols-2">
-        {services.map((service, i) => (
-          <Reveal key={service.title} delay={i * 90}>
-            <TiltCard className="group h-full rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary">
-              <span className="font-mono text-sm text-primary">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="mt-3 text-lg font-medium">{service.title}</h3>
-              <p className="mt-2 text-pretty leading-relaxed text-muted-foreground">
-                {service.description}
-              </p>
-            </TiltCard>
-          </Reveal>
-        ))}
-      </div>
-    </Section>
+    <div
+      ref={ref}
+      onMouseMove={handleMove}
+      onMouseLeave={reset}
+      className={`tilt ${className}`}
+    >
+      {children}
+    </div>
   )
 }

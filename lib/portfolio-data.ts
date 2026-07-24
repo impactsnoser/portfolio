@@ -1,33 +1,102 @@
-import { Section } from "@/components/section"
-import { Reveal } from "@/components/reveal"
-import { skillGroups } from "@/lib/portfolio-data"
+// ============================================================================
+//  РЕДАКТИРУЙ ВСЁ ЗДЕСЬ — твоё имя, описание, работы, навыки, услуги, контакты.
+//  Меняй текст, добавляй/удаляй элементы массивов — сайт обновится автоматически.
+// ============================================================================
 
-export function Skills() {
-  return (
-    <Section id="skills" eyebrow="01. Технологии" title="Навыки">
-      <div className="grid gap-6 sm:grid-cols-2">
-        {skillGroups.map((group, i) => (
-          <Reveal
-            key={group.title}
-            delay={i * 90}
-            className="rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary hover:shadow-lg hover:shadow-primary/10"
-          >
-            <h3 className="text-sm font-medium text-muted-foreground">
-              {group.title}
-            </h3>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {group.items.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-md border border-border bg-secondary px-3 py-1 font-mono text-sm text-foreground transition-colors hover:border-primary hover:text-primary"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        ))}
-      </div>
-    </Section>
-  )
+export const profile = {
+  name: "Матвей Лобанов",
+  role: "Full-Stack разработчик",
+  tagline:
+    "Создаю быстрые, доступные и красивые веб-приложения. Превращаю идеи в продуманные интерфейсы и надёжный код.",
+  available: true, // true = показывать бейдж «Открыт к работе»
+}
+
+// ----------------------------------------------------------------------------
+//  НАВЫКИ / ТЕХНОЛОГИИ — сгруппированы по категориям
+// ----------------------------------------------------------------------------
+export const skillGroups: { title: string; items: string[] }[] = [
+  {
+    title: "Языки",
+    items: ["TypeScript", "JavaScript", "Python", "SQL", "Go"],
+  },
+  {
+    title: "Frontend",
+    items: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "Vue"],
+  },
+  {
+    title: "Backend",
+    items: ["Node.js", "PostgreSQL", "Prisma", "Redis", "REST / GraphQL"],
+  },
+  {
+    title: "Инструменты",
+    items: ["Git", "Docker", "Vercel", "Figma", "Linux"],
+  },
+]
+
+// ----------------------------------------------------------------------------
+//  УСЛУГИ
+// ----------------------------------------------------------------------------
+export const services: { title: string; description: string }[] = [
+  {
+    title: "Веб-разработка",
+    description:
+      "Современные сайты и веб-приложения на Next.js и React — от лендинга до сложной платформы.",
+  },
+  {
+    title: "Backend и API",
+    description:
+      "Проектирование баз данных, REST/GraphQL API, интеграции с внешними сервисами и платежами.",
+  },
+  {
+    title: "UI / UX",
+    description:
+      "Чистые, доступные интерфейсы с вниманием к деталям, анимациям и производительности.",
+  },
+  {
+    title: "Консультации",
+    description:
+      "Аудит кода, помощь с архитектурой и подбор технологий под задачи твоего проекта.",
+  },
+]
+
+// ----------------------------------------------------------------------------
+//  РАБОТЫ / ПРОЕКТЫ — добавляй сюда свои проекты
+//  image — путь к картинке в /public (необязательно)
+// ----------------------------------------------------------------------------
+export type Project = {
+  title: string
+  description: string
+  tags: string[]
+  liveUrl?: string
+  githubUrl?: string
+  image?: string
+}
+
+export const projects: Project[] = [
+  {
+    title: "Mebel",
+    description:
+      "Сайт-каталог мебели: витрина товаров и адаптивная вёрстка.",
+    tags: ["HTML", "CSS", "JavaScript"],
+    githubUrl: "https://github.com/impactsnoser/mebel",
+  },
+  {
+    title: "Subscriptions Tracker",
+    description:
+      "Приложение для учёта регулярных подписок и напоминаний об оплате.",
+    tags: ["Swift", "iOS"],
+    githubUrl: "https://github.com/impactsnoser/subscriptions-tracker",
+  },
+]
+
+// ----------------------------------------------------------------------------
+//  КОНТАКТЫ — твои данные внизу страницы
+// ----------------------------------------------------------------------------
+export const contact = {
+  email: "workingmatvey@gmail.com",
+  phone: "+7 992 317-54-56",
+  socials: [
+    { label: "GitHub", url: "https://github.com/impactsnoser" },
+    { label: "Telegram", url: "https://t.me/sbxr3" },
+  ],
 }
