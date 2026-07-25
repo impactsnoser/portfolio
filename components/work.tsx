@@ -2,6 +2,7 @@ import { Section } from "@/components/section"
 import { Reveal } from "@/components/reveal"
 import { TiltCard } from "@/components/tilt-card"
 import { projects } from "@/lib/portfolio-data"
+import { withBasePath } from "@/lib/utils"
 import { ArrowUpRight } from "lucide-react"
 
 function GithubIcon({ className }: { className?: string }) {
@@ -31,7 +32,7 @@ export function Work() {
               {project.image ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src={project.image || "/placeholder.svg"}
+                  src={project.image ? withBasePath(project.image) : withBasePath("/placeholder.svg")}
                   alt={project.title}
                   className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />

@@ -1,6 +1,7 @@
 import { Section } from "@/components/section"
 import { Reveal } from "@/components/reveal"
 import { about } from "@/lib/portfolio-data"
+import { withBasePath } from "@/lib/utils"
 import { FileDown } from "lucide-react"
 
 export function About() {
@@ -12,7 +13,7 @@ export function About() {
         </p>
         {about.resumeUrl && (
           <a
-            href={about.resumeUrl}
+            href={withBasePath(about.resumeUrl)}
             target="_blank"
             rel="noopener noreferrer"
             className="flex shrink-0 items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-medium transition-all hover:-translate-y-0.5 hover:border-primary hover:text-primary"

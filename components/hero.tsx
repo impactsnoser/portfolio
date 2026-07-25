@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import { profile } from "@/lib/portfolio-data"
+import { withBasePath } from "@/lib/utils"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { LiquidBlobs } from "@/components/liquid-blobs"
 
@@ -118,7 +119,7 @@ export function Hero() {
           <div className="liquid-glass flex h-32 w-32 shrink-0 items-center justify-center overflow-hidden rounded-full sm:h-40 sm:w-40">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/avatar.jpg"
+              src={withBasePath("/avatar.jpg")}
               alt={profile.name}
               className="h-full w-full object-cover"
               onError={(e) => {
