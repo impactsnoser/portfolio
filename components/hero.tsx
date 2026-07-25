@@ -111,40 +111,65 @@ export function Hero() {
         </div>
       )}
 
-      {/* Контент героя */}
-      <div className="absolute bottom-0 left-0 z-20 max-w-2xl px-6 pb-10 sm:px-12 sm:pb-16">
-        {profile.available && (
-          <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/80 backdrop-blur-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-            </span>
-            Открыт к новым проектам
+      {/* Контент героя — центрирован по вертикали, чтобы не оставлять пустоту сверху */}
+      <div className="relative z-20 flex h-full w-full items-center px-6 sm:px-12">
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 text-center md:flex-row md:items-center md:text-left">
+          {/* Аватар — положи своё фото в /public/avatar.jpg и раскомментируй img ниже */}
+          <div className="liquid-glass flex h-32 w-32 shrink-0 items-center justify-center overflow-hidden rounded-full sm:h-40 sm:w-40">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/avatar.jpg"
+              alt={profile.name}
+              className="h-full w-full object-cover"
+              onError={(e) => {
+                // если фото ещё не добавлено — показываем инициалы вместо сломанной картинки
+                e.currentTarget.style.display = "none"
+              }}
+            />
           </div>
-        )}
 
-        <h1 className="mb-4 text-4xl font-medium leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-          {profile.name}
-        </h1>
-        <p className="mb-2 text-xl font-medium text-white/80 sm:text-2xl">{profile.role}</p>
-        <p className="mb-7 max-w-md text-sm leading-relaxed text-white/60">
-          {profile.tagline}
-        </p>
+          <div className="max-w-2xl">
+            {profile.available && (
+              <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/80 backdrop-blur-sm">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+                </span>
+                Открыт к новым проектам
+              </div>
+            )}
 
-        <div className="flex flex-wrap items-center gap-3">
-          <a
-            href="#work"
-            className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-colors hover:bg-white/90 sm:px-7 sm:text-base"
-          >
-            Мои работы
-          </a>
-          <a
-            href="#contact"
-            className="liquid-glass rounded-full px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5 sm:px-7 sm:text-base"
-          >
-            Связаться со мной
-          </a>
+            <h1 className="mb-4 text-4xl font-medium leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+              {profile.name}
+            </h1>
+            <p className="mb-2 text-xl font-medium text-white/80 sm:text-2xl">{profile.role}</p>
+            <p className="mb-7 max-w-md text-sm leading-relaxed text-white/60">
+              {profile.tagline}
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
+              <a
+                href="#work"
+                className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-colors hover:bg-white/90 sm:px-7 sm:text-base"
+              >
+                Мои работы
+              </a>
+              <a
+                href="#contact"
+                className="liquid-glass rounded-full px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5 sm:px-7 sm:text-base"
+              >
+                Связаться со мной
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
+
+      {/* Индикатор скролла вниз */}
+      <div className="pointer-events-none absolute bottom-6 left-1/2 z-20 -translate-x-1/2 animate-bounce text-white/40">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M12 5v14M5 12l7 7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </div>
     </section>
   )

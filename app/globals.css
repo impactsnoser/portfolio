@@ -185,6 +185,26 @@
     animation: aurora-float 14s ease-in-out infinite alternate;
   }
 
+  /* Плавное парение блобов в hero-фоне (см. components/liquid-blobs.tsx) */
+  .blob-float {
+    animation-name: blob-float;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+
+  @keyframes blob-float {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(4%, -6%, 0) scale(1.08);
+    }
+    100% {
+      transform: translate3d(-4%, 5%, 0) scale(0.96);
+    }
+  }
+
   @keyframes aurora-float {
     0% {
       transform: translate3d(-5%, -3%, 0) scale(1);

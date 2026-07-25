@@ -16,19 +16,21 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
         url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
       },
       {
         url: '/icon.svg',
         type: 'image/svg+xml',
       },
     ],
-    apple: '/apple-icon.png',
+  },
+  openGraph: {
+    title: 'Матвей Лобанов — Full-Stack разработчик',
+    description:
+      'Портфолио Матвея Лобанова: проекты, навыки, услуги и контакты.',
+    images: ['/og-image.png'],
+    locale: 'ru_RU',
+    type: 'website',
   },
 }
 
