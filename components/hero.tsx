@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react"
 import { profile } from "@/lib/portfolio-data"
 import { withBasePath } from "@/lib/utils"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { LiquidBlobs } from "@/components/liquid-blobs"
+import { FallingSpheres } from "@/components/falling-spheres"
 
 // Если хочешь фоновое видео — положи файл в /public (например /public/hero-bg.mp4)
 // и укажи путь ниже. Если оставить пустой строкой — будет фон без видео (просто
@@ -36,7 +36,7 @@ export function Hero() {
           playsInline
         />
       ) : (
-        <LiquidBlobs />
+        <FallingSpheres />
       )}
       {/* Затемнение поверх фона для читаемости текста */}
       <div className="absolute inset-0 bg-black/15" aria-hidden="true" />
