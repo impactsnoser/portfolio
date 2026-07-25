@@ -7,10 +7,10 @@ import { withBasePath } from "@/lib/utils"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { FallingSpheres } from "@/components/falling-spheres"
 
-// Если хочешь фоновое видео — положи файл в /public (например /public/hero-bg.mp4)
-// и укажи путь ниже. Если оставить пустой строкой — будет фон без видео (просто
-// текущий тёмный/светлый фон сайта), ничего не сломается.
-const BG_VIDEO = ""
+// Фоновое видео — файл лежит в /public/hero-bg.mp4.
+// Если видео не загрузится (медленный интернет/ошибка) — автоматически
+// покажется fallback-фон с падающими шариками.
+const BG_VIDEO = "/hero-bg.mp4"
 
 const navLinks = [
   { href: "#about", label: "Обо мне", active: true },
@@ -22,18 +22,22 @@ const navLinks = [
 
 export function Hero() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [videoFailed, setVideoFailed] = useState(false)
+
+  const showVideo = BG_VIDEO && !videoFailed
 
   return (
     <section id="about" className="relative h-screen w-full overflow-hidden">
       {/* Фоновое видео (опционально) */}
-      {BG_VIDEO ? (
+      {showVideo ? (
         <video
           className="absolute inset-0 h-full w-full object-cover"
-          src={BG_VIDEO}
+          src={withBasePath(BG_VIDEO)}
           autoPlay
           muted
           loop
           playsInline
+          onError={() => setVideoFailed(true)}
         />
       ) : (
         <FallingSpheres />
