@@ -273,30 +273,4 @@
     mask-composite: exclude;
     pointer-events: none;
   }
-  /* Бегущий блик поверх стекла */
-  .liquid-glass::after {
-    content: '';
-    position: absolute;
-    inset: -50%;
-    background: linear-gradient(
-      115deg,
-      transparent 30%,
-      rgba(255, 255, 255, 0.18) 45%,
-      rgba(255, 255, 255, 0.35) 50%,
-      rgba(255, 255, 255, 0.18) 55%,
-      transparent 70%
-    );
-    transform: translateX(-30%);
-    animation: glass-sheen 6s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  @keyframes glass-sheen {
-    0%, 100% {
-      transform: translateX(-60%) translateY(-10%);
-    }
-    50% {
-      transform: translateX(30%) translateY(10%);
-    }
-  }
 }
