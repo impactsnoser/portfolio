@@ -96,11 +96,12 @@ export const projects: Project[] = [
     image: "/projects/mebel.png",
   },
   {
-    title: "Subscriptions Tracker",
+    title: "Renewly",
     description:
-      "Приложение для учёта регулярных подписок и напоминаний об оплате.",
-    tags: ["Swift", "iOS"],
-    githubUrl: "https://github.com/impactsnoser/subscriptions-tracker",
+      "Приложение для учёта регулярных подписок: сумма трат за месяц, дата ближайшего списания по каждому сервису и наглядный лимит бюджета — на первом экране, без лишних переходов.",
+    tags: ["Swift", "SwiftUI", "SwiftData", "iOS"],
+    githubUrl: "https://github.com/impactsnoser/tracker-subs",
+    image: "/projects/renewly.png",
   },
 ]
 
