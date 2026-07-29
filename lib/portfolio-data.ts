@@ -113,6 +113,6 @@ export const contact = {
   phone: "+7 992 317-54-56",
   socials: [
     { label: "GitHub", url: "https://github.com/impactsnoser" },
-    { label: "Telegram", url: "https://t.me/sbxr3" },
+    { label: "Telegram", url: "https://t.me/vozafi" },
   ],
 }
