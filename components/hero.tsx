@@ -139,7 +139,7 @@ export function Hero() {
       <div className="relative z-20 flex h-full w-full items-center px-6 sm:px-12">
         <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 text-center md:flex-row md:items-center md:text-left">
           <div className="liquid-glass flex h-32 w-32 shrink-0 items-center justify-center overflow-hidden rounded-full sm:h-40 sm:w-40">
-            {}
+            
             <img
               src={withBasePath("/avatar.jpg")}
               alt={profile.name}

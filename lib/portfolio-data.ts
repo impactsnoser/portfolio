@@ -74,8 +74,8 @@ export const projects: Project[] = [
       "Telegram Mini App для онлайн-записи в барбершоп: клиент выбирает услугу, мастера и время и оплачивает через Telegram Stars, не выходя из мессенджера. Владелец видит все брони в реальном времени через встроенную админ-панель.",
     tags: ["Telegram Mini Apps", "Telegram Stars", "ЮKassa", "REST API", "Railway", "Vercel"],
     repos: [
-      { label: "Клиент", url: "https:
-      { label: "Сервер", url: "https:
+      { label: "Клиент", url: "https://github.com/impactsnoser/britva-client" },
+      { label: "Сервер", url: "https://github.com/impactsnoser/barbeshop" },
     ],
     image: "/projects/britva.png",
   },
@@ -84,7 +84,7 @@ export const projects: Project[] = [
     description:
       "Сайт-каталог мебели: витрина товаров и адаптивная вёрстка.",
     tags: ["HTML", "CSS", "JavaScript"],
-    githubUrl: "https:
+    githubUrl: "https://github.com/impactsnoser/mebel",
     image: "/projects/mebel.png",
   },
   {
@@ -92,7 +92,7 @@ export const projects: Project[] = [
     description:
       "Приложение для учёта регулярных подписок: сумма трат за месяц, дата ближайшего списания по каждому сервису и наглядный лимит бюджета — на первом экране, без лишних переходов.",
     tags: ["Swift", "SwiftUI", "SwiftData", "iOS"],
-    githubUrl: "https:
+    githubUrl: "https://github.com/impactsnoser/tracker-subs",
     image: "/projects/renewly.png",
   },
 ]
@@ -101,7 +101,7 @@ export const contact = {
   email: "workingmatvey@gmail.com",
   phone: "+7 992 317-54-56",
   socials: [
-    { label: "GitHub", url: "https:
-    { label: "Telegram", url: "https:
+    { label: "GitHub", url: "https://github.com/impactsnoser" },
+    { label: "Telegram", url: "https://t.me/sbxr3" },
   ],
 }
