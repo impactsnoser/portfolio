@@ -1,19 +1,16 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
 import { profile } from "@/lib/portfolio-data"
 import { withBasePath } from "@/lib/utils"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { FallingSpheres } from "@/components/falling-spheres"
 
-// Фоновое видео — файл лежит в /public/hero-bg.mp4.
-// Если видео не загрузится (медленный интернет/ошибка) — автоматически
-// покажется fallback-фон с падающими шариками.
 const BG_VIDEO = "/hero-bg.mp4"
 
 const navLinks = [
-  { href: "#about", label: "Обо мне", active: true },
+  { href: "#bio", label: "Обо мне" },
   { href: "#skills", label: "Навыки" },
   { href: "#services", label: "Услуги" },
   { href: "#work", label: "Работы" },
@@ -23,12 +20,34 @@ const navLinks = [
 export function Hero() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [videoFailed, setVideoFailed] = useState(false)
+  const [activeSection, setActiveSection] = useState("")
 
   const showVideo = BG_VIDEO && !videoFailed
 
+  useEffect(() => {
+    const sections = navLinks
+      .map((link) => document.getElementById(link.href.slice(1)))
+      .filter((el): el is HTMLElement => el !== null)
+
+    if (sections.length === 0) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    )
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section id="about" className="relative h-screen w-full overflow-hidden">
-      {/* Фоновое видео (опционально) */}
       {showVideo ? (
         <video
           className="absolute inset-0 h-full w-full object-cover"
@@ -42,10 +61,8 @@ export function Hero() {
       ) : (
         <FallingSpheres />
       )}
-      {/* Затемнение поверх фона для читаемости текста */}
       <div className="absolute inset-0 bg-black/15" aria-hidden="true" />
 
-      {/* Навбар */}
       <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-5 py-5 sm:px-8">
         <a href="#top" className="flex items-center gap-2 text-base font-medium text-white">
           <span className="font-mono text-primary">{"<"}</span>
@@ -59,7 +76,9 @@ export function Hero() {
               key={link.href}
               href={link.href}
               className={`flex items-center gap-0.5 rounded-md px-3 py-1.5 text-sm transition-colors ${
-                link.active ? "bg-white/15 text-white" : "text-white/70 hover:text-white"
+                activeSection === link.href.slice(1)
+                  ? "bg-white/15 text-white"
+                  : "text-white/70 hover:text-white"
               }`}
             >
               {link.label}
@@ -88,7 +107,6 @@ export function Hero() {
         </button>
       </div>
 
-      {/* Мобильное меню */}
       {menuOpen && (
         <div className="liquid-glass absolute left-4 right-4 top-[72px] z-30 flex flex-col gap-1 rounded-2xl p-4 md:hidden">
           {navLinks.map((link) => (
@@ -96,7 +114,9 @@ export function Hero() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-sm text-white/85 hover:bg-white/5"
+              className={`flex w-full items-center justify-between rounded-lg px-4 py-3 text-sm hover:bg-white/5 ${
+                activeSection === link.href.slice(1) ? "bg-white/10 text-white" : "text-white/85"
+              }`}
             >
               {link.label}
             </a>
@@ -116,18 +136,15 @@ export function Hero() {
         </div>
       )}
 
-      {/* Контент героя — центрирован по вертикали, чтобы не оставлять пустоту сверху */}
       <div className="relative z-20 flex h-full w-full items-center px-6 sm:px-12">
         <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 text-center md:flex-row md:items-center md:text-left">
-          {/* Аватар — положи своё фото в /public/avatar.jpg и раскомментируй img ниже */}
           <div className="liquid-glass flex h-32 w-32 shrink-0 items-center justify-center overflow-hidden rounded-full sm:h-40 sm:w-40">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
+            {}
             <img
               src={withBasePath("/avatar.jpg")}
               alt={profile.name}
               className="h-full w-full object-cover"
               onError={(e) => {
-                // если фото ещё не добавлено — показываем инициалы вместо сломанной картинки
                 e.currentTarget.style.display = "none"
               }}
             />
@@ -170,7 +187,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Индикатор скролла вниз */}
       <div className="pointer-events-none absolute bottom-6 left-1/2 z-20 -translate-x-1/2 animate-bounce text-white/40">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M12 5v14M5 12l7 7 7-7" strokeLinecap="round" strokeLinejoin="round" />

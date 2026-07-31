@@ -2,10 +2,6 @@
 
 import { useEffect, useRef, type ReactNode } from "react"
 
-/**
- * Оборачивает контент и плавно проявляет его при попадании в зону видимости.
- * delay — задержка в мс для эффекта каскада.
- */
 export function Reveal({
   children,
   delay = 0,
@@ -41,7 +37,7 @@ export function Reveal({
 
   return (
     <Tag
-      // @ts-expect-error — ref совместим со всеми вариантами тега
+      
       ref={ref}
       className={`reveal ${className}`}
       style={{ transitionDelay: `${delay}ms` }}

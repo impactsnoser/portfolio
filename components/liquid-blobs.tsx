@@ -1,6 +1,3 @@
-// Анимированные "жидкие" шарики-блобы для фона hero-секции.
-// Использует SVG-фильтр (gooey) — блобы визуально сливаются друг с другом,
-// как капли жидкости. На этом фоне отлично видно эффект liquid glass у карточек.
 const blobs = [
   { color: "oklch(0.7 0.16 175)", size: 420, top: "5%", left: "8%", duration: "18s", delay: "0s" },
   { color: "oklch(0.65 0.18 260)", size: 360, top: "10%", left: "70%", duration: "22s", delay: "-4s" },
@@ -44,10 +41,9 @@ export function LiquidBlobs() {
         ))}
       </div>
 
-      {/* Лёгкое зерно поверх, чтобы градиенты не выглядели плоско */}
       <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay" style={{
         backgroundImage:
-          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+          "url(\"data:image/svg+xml,%3Csvg xmlns='http:
       }} />
     </div>
   )

@@ -49,7 +49,6 @@
 }
 
 :root {
-  /* light minimalist portfolio theme */
   --background: oklch(0.98 0.003 260);
   --foreground: oklch(0.22 0.01 260);
   --card: oklch(1 0 0);
@@ -85,7 +84,6 @@
 }
 
 .dark {
-  /* dark minimalist portfolio theme */
   --background: oklch(0.16 0.005 260);
   --foreground: oklch(0.93 0.005 260);
   --card: oklch(0.2 0.006 260);
@@ -130,14 +128,12 @@
     @apply font-sans;
   }
 
-  /* Плавная смена темы для цветов и теней */
   body,
   body * {
     transition: background-color 0.5s ease, border-color 0.5s ease,
       color 0.4s ease, box-shadow 0.4s ease, fill 0.4s ease;
   }
 
-  /* Уважаем настройку "уменьшить движение" */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -151,7 +147,6 @@
 }
 
 @layer utilities {
-  /* Появление при скролле */
   .reveal {
     opacity: 0;
     transform: translateY(28px);
@@ -164,7 +159,6 @@
     transform: translateY(0);
   }
 
-  /* 3D-наклон карточек */
   .tilt {
     transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg))
       translateZ(0);
@@ -172,7 +166,6 @@
     transform-style: preserve-3d;
   }
 
-  /* Плавный градиентный ореол */
   .aurora {
     background: radial-gradient(
         40% 60% at 20% 20%,
@@ -185,7 +178,6 @@
     animation: aurora-float 14s ease-in-out infinite alternate;
   }
 
-  /* Плавное парение блобов в hero-фоне (см. components/liquid-blobs.tsx) */
   .blob-float {
     animation-name: blob-float;
     animation-timing-function: ease-in-out;
@@ -234,7 +226,6 @@
     }
   }
 
-  /* Стекло-эффект "liquid glass" для хиро-секции */
   .liquid-glass {
     background: rgba(255, 255, 255, 0.06);
     background-blend-mode: luminosity;

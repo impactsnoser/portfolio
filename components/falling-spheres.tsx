@@ -1,7 +1,5 @@
 "use client"
 
-// Лёгкий фон с падающими шариками (физика гравитации + отскок).
-// Canvas вместо видео — весит килобайты вместо мегабайт и не тормозит на мобильных.
 import { useEffect, useRef } from "react"
 
 type Ball = {
@@ -13,7 +11,7 @@ type Ball = {
   hue: number
 }
 
-const COLORS = [175, 200, 260, 320, 30] // оттенки в стиле сайта (teal, blue, violet, pink, amber)
+const COLORS = [175, 200, 260, 320, 30]
 
 export function FallingSpheres() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -66,13 +64,11 @@ export function FallingSpheres() {
         b.x += b.vx
         b.y += b.vy
 
-        // отскок от пола
         if (b.y + b.r > height) {
           b.y = height - b.r
           b.vy *= -damping
           b.vx *= 0.98
         }
-        // отскок от стен
         if (b.x - b.r < 0) {
           b.x = b.r
           b.vx *= -1
@@ -105,14 +101,12 @@ export function FallingSpheres() {
     const onResize = () => {
       const oldWidth = width
       resize()
-      // масштабируем позиции шариков под новый размер, чтобы не телепортировались
       const scale = oldWidth ? width / oldWidth : 1
       balls.forEach((b) => (b.x *= scale))
     }
     window.addEventListener("resize", onResize)
 
     if (prefersReducedMotion) {
-      // рисуем один статичный кадр вместо анимации
       tick()
       cancelAnimationFrame(rafId)
     } else {

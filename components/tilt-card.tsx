@@ -2,10 +2,6 @@
 
 import { useRef, type ReactNode } from "react"
 
-/**
- * Карточка с интерактивным 3D-наклоном, следующим за курсором.
- * На сенсорных устройствах эффект просто не срабатывает.
- */
 export function TiltCard({
   children,
   className = "",

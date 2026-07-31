@@ -30,7 +30,7 @@ export function Work() {
               className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary hover:shadow-xl hover:shadow-primary/10"
             >
               {project.image ? (
-                // eslint-disable-next-line @next/next/no-img-element
+                
                 <img
                   src={project.image ? withBasePath(project.image) : withBasePath("/placeholder.svg")}
                   alt={project.title}
@@ -48,7 +48,7 @@ export function Work() {
                 <div className="flex items-start justify-between gap-3">
                   <h3 className="text-lg font-medium">{project.title}</h3>
                   <div className="flex gap-2">
-                    {project.githubUrl && (
+                    {!project.repos && project.githubUrl && (
                       <a
                         href={project.githubUrl}
                         target="_blank"
@@ -75,6 +75,22 @@ export function Work() {
                 <p className="mt-2 flex-1 text-pretty leading-relaxed text-muted-foreground">
                   {project.description}
                 </p>
+                {project.repos && (
+                  <div className="mt-3 flex flex-wrap gap-3">
+                    {project.repos.map((repo) => (
+                      <a
+                        key={repo.url}
+                        href={repo.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-primary"
+                      >
+                        <GithubIcon className="h-4 w-4" />
+                        {repo.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
                 <ul className="mt-4 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <li

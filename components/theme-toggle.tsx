@@ -19,7 +19,6 @@ export function ThemeToggle() {
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className="relative inline-flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-border bg-card text-foreground transition-all hover:border-primary hover:text-primary active:scale-90"
     >
-      {/* До монтирования рендерим нейтральную иконку, чтобы избежать рассинхрона */}
       <Sun
         className={`absolute h-[18px] w-[18px] transition-all duration-500 ${
           mounted && isDark
