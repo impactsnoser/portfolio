@@ -30,7 +30,7 @@ export function Work() {
               className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary hover:shadow-xl hover:shadow-primary/10"
             >
               {project.image ? (
-                
+                // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={project.image ? withBasePath(project.image) : withBasePath("/placeholder.svg")}
                   alt={project.title}

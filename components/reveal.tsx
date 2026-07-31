@@ -37,7 +37,7 @@ export function Reveal({
 
   return (
     <Tag
-      
+      // @ts-expect-error
       ref={ref}
       className={`reveal ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
